@@ -1,0 +1,36 @@
+twitter のアイコン画像を変えるためのツールです。
+
+[setting]
+  "config.php"を書き換えます。
+    ・画像パスの設定
+      $image_files には、変更する画像のパスを記述します。
+      標準では"sample"ディレクトリ内の画像を使うようにしてありますので、
+    ・twitter アカウントの設定
+      define されている定数を書き換えます。
+        <USERNAME> : twitter のuser ID
+        <PASSWORD> : twitter のパスワード
+        <SECRET>   : アクセス時に使う秘密の文字 (optional)
+          ... url safe な文字列を設定すると、getパラメータにこの文字列があるかチェックします。
+
+[install]
+  PHP が動作する web サーバに設置してください。
+  PHP 4でも動くような気がしますが未テストです。
+  PEAR::HTTP_Request が必要です。
+
+[usage]
+  ・web mode
+    twicoro/index.php にアクセスすると、画像の一覧が表示されます。
+    リンクをクリックすると JavaScript の確認ダイアログが表示され、
+    OK すると画像が変更されます。
+  ・api mode
+    http://twicoro/change.php?image={image_index}&key={secret}&mode=api
+       image : 変更対象の画像($image_files)のインデックス(0〜)を指定します。
+       key   : <SECRET>に指定した文字列を指定します。
+       mode  : 'api' を指定すると api mode として動作します。
+               web mode との違いはレスポンスだけです。
+[disclaimer]
+  ・動かなかったらごめんなさい。
+  ・何か不具合があったら教えてください。
+  ・API 上限や twitter トラブルのテストができてません。
+  ・ちゃんと動くように作ってるはずですが、
+    利用したことで何らかの損害が発生しても一切の責は追いません。
